@@ -3,7 +3,7 @@ import LayOut from "./components/layout";
 import Home from "./routes/home";
 import Profile from "./routes/profile";
 import Login from "./routes/login";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import Loading from "./components/loading";
@@ -42,6 +42,12 @@ const router = createBrowserRouter([
   },
 ]);
 
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+`;
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const init = async () => {
@@ -54,10 +60,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <GlobalStyles />
       {isLoading ? <Loading></Loading> : <RouterProvider router={router}></RouterProvider>}
-    </>
+    </Wrapper>
   );
 }
 
