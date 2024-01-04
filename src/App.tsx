@@ -8,6 +8,8 @@ import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import Loading from "./components/loading";
 import { auth } from "./firebase";
+import CreateAccount from "./routes/create-account";
+import ProtectedRoute from "./components/protected-route";
 
 const GlobalStyles = createGlobalStyle`
 ${reset};
@@ -24,7 +26,11 @@ body {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayOut />,
+    element: (
+      <ProtectedRoute>
+        <LayOut />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "",
@@ -39,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/create-account",
+    element: <CreateAccount />,
   },
 ]);
 
